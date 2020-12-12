@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Temperature Analysis</title>
+  <div class="nav-wrapper">
+
+    <h3 class="card-panel #ffd54f amber lighten-2 center valign-wrapper center">
+      <span>TEMPERATURE RECORD</span></a>
+      </a></h3><h3>
+
+</div>
+  <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <!-- Compiled and minified JavaScript -->
+    <style>
+        div.main {
+            padding: 5px 50px 75px 50px;
+        }
+
+        span,img {
+            vertical-align: middle;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .card-title {
+            display: block;
+            font-family: Tahoma;
+            font-size: 30px;
+            color: #040c18;
+            line-height: 100px;
+            text-align: center;
+        }
+
+     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+</head>
+<body style="background-image:url('daks.jpg');  background-repeat: no-repeat;
+background-attachment: fixed;  
+background-size: cover">
+
+ 
+<p style="font-family:gabriola;font-size:200%;text-align:left"><b>Temperature Analytic Values </b></p>
+  <div class="row">
+    <div class="col s3">
+      <a href="file:///C:/Users/boopa/Documents/Nikhil%20proj/webpage.html" style="color: #000000">
+      <div class="card grey lighten-4">
+        <div class="card-content row valign-wrapper">
+          <div class="col s3">
+          <img src="sensor1.jpg" width="60">
+        </div>
+        <div class="col s9">
+          <span id="Temp" style="font-size:30px;"></span>
+        </div>
+        </div>
+      </div>
+    </a>
+    </div> 
+
+     <div class="col s3">
+      <a href="file:///C:/Users/boopa/Documents/Nikhil%20proj/webpage.html" style="color: #000000">
+      <div class="card grey lighten-4">
+        <div class="card-content row valign-wrapper">
+          <div class="col s3">
+          <img src="sensor2.jpg" width="60">
+        </div>
+        <div class="col s9">
+          <span id="temp1" style="font-size:30px;"></span>
+        </div>
+        </div>
+      </div>
+    </a>
+    </div> <div class="col s3">
+      <a href="file:///C:/Users/boopa/Documents/Nikhil%20proj/webpage.html" style="color: #000000">
+      <div class="card grey lighten-4">
+        <div class="card-content row valign-wrapper">
+          <div class="col s3">
+          <img src="sensor3.jpg" width="60">
+        </div>
+        <div class="col s9">
+          <span id="temp2" style="font-size:30px;"></span>
+        </div>
+        </div>
+      </div>
+    </a>
+    </div> 
+    
+
+    <br><br><br><br><br></n><p style="font-family:gabriola;font-size:200%;text-align:left"><b>Graphical Representation Of The Analysis</b></p>
+    
+
+</body>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1255616/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=20&type=line&yaxismax=45&yaxismin=0"></iframe>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1255616/widgets/247836"></iframe>
+<br>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1256244/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=20&title=Concrete+Temperature+Analysis++&type=line&xaxis=Time+&yaxis=Temperature+&yaxismax=45&yaxismin=0"></iframe>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1256244/widgets/247962"></iframe>
+<br>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1256271/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=20&title=Concrete+Temperature+Analysis++&type=line&xaxis=Time+&yaxis=Temperature+&yaxismax=45&yaxismin=0"></iframe>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1256271/widgets/247969"></iframe>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.4/firebase-database.js"></script>
+
+<script>
+  var firebaseConfig = {
+  apiKey: "AIzaSyDk075X_EJb27zlLbJh8GCGqsbnLt5qC1g",
+  authDomain: "temperature-monitoring-6351a.firebaseapp.com",
+  databaseURL: "https://temperature-monitoring-6351a-default-rtdb.firebaseio.com",
+  projectId: "temperature-monitoring-6351a",
+  storageBucket: "temperature-monitoring-6351a.appspot.com",
+  messagingSenderId: "617673199968",
+  appId: "1:617673199968:web:dd6d78d01b970cb0a5ce05",
+  measurementId: "G-02N5VECSK3"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+var ref = firebase.database().ref();
+//console.log(ref);
+ref.on('value', 
+    (snapshot) =>{
+    const data = snapshot.forEach( (child) => {
+        console.log('child val', child.val());
+        document.getElementById('Temp').innerHTML = JSON.stringify(child.val());   
+        document.getElementById('temp1').innerHTML = JSON.stringify(child.val());
+        document.getElementById('temp2').innerHTML = JSON.stringify(child.val());
+        });
+    }
+);
+</script>
+
+
+</html>
